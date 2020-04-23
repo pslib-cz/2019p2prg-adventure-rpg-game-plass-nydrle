@@ -18,9 +18,15 @@ namespace Adventure2020.Services
             _locations.Add(0, new Location { Description = "This is where our story starts." }); // Game starts
             _locations.Add(1, new Location { Description = "All worldly things will one day perish. You just did." }); // Game Over
             _locations.Add(2, new Location { Description = "You stand in seemingly empty hall ..." });
-            _locations.Add(3, new Location { Description = "Library is in utterly desolate state ..." });
+            _locations.Add(3, new Location { Description = "Library is in utterly desolate state, you can take some books :) ..." });
+            _locations.Add(4, new Location {Description = "You are standing on the GALLERY..."});
+            _locations.Add(5, new Location {Description = "You are looking out of the window. The window is locked ..."});
+            _locations.Add(6, new Location {Description = "There is just a regular bookshelf. Oh wait, what does this little metal button?"});
             _map.Add(new Connection(0, 2, "Go to hall"));
             _map.Add(new Connection(2, 3, "Visit Library", (gs) => { if (gs.HP > 10) return true; return false; }));
+            _map.Add(new Connection(3,4, "Walk up the little stairs in the library to the gallery"));
+            _map.Add(new Connection(4,5,"Go left to look closely at the window")); // s oknem pak půjde něco udělat
+            _map.Add(new Connection(4,6, "Go to the right to see the end of the gallery"));
         }
 
         public bool ExistsLocation(int id)
