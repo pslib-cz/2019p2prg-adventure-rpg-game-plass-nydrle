@@ -22,6 +22,14 @@ namespace Adventure2020.Models
             }
             return false;
         }
+        public void ToHand(Item it)
+        {
+            foreach(var i in items)
+            {
+                i.IsInHand = false;
+            }
+            it.IsInHand = true;
+        }
     }
 }
 
