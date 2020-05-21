@@ -8,13 +8,13 @@ namespace Adventure2020.Services
 {
     public class LocationProvider : ILocationProvider
     {
-        private Dictionary<int, ILocation> _locations;
-        private List<Connection> _map;
+        private Dictionary<int, Location> _locations;
+        private List<Connection> _map = new List<Connection>();
 
         public LocationProvider()
         {
             GameState gs = new GameState();
-            _locations = new Dictionary<int, ILocation>();
+            _locations = new Dictionary<int, Location>();
             _map = new List<Connection>();
             _locations.Add(0, new Location { Description = "This is where our story starts." }); // Game starts
             _locations.Add(1, new Location { Description = "All worldly things will one day perish. You just did." }); // Game Over
