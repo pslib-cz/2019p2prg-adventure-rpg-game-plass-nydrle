@@ -7,14 +7,14 @@ namespace Adventure2020.Models
 {
     public class Item
     {
-        public string ItemDes { get; set; }
+        public string ItemDescription { get; set; }
         public bool IsInHand { get; set; }
         public int Counter { get; set; }
-        public Item(string des, bool inH, int count)
+        public Item(string _description, bool _inHand, int _count)
         {
-            ItemDes = des;
-            IsInHand = inH;
-            Counter = count;
+            ItemDescription = _description;
+            IsInHand = _inHand;
+            Counter = _count;
         }
     }
 }

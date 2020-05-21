@@ -8,7 +8,7 @@ namespace Adventure2020.Services
 {
     public class LocationProvider : ILocationProvider
     {
-        public static Dictionary<int, Location> Locations;
+        public Dictionary<int, Location> Locations;
         public List<Connection> Map; // list of connections
 
         public LocationProvider()
