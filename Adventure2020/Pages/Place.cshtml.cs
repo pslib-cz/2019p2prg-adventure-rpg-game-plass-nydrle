@@ -11,35 +11,36 @@ namespace Adventure2020
 {
     public class PlaceModel : PageModel
     {
-        public GameService GameService;
+        public GameService gameService;
 
         public PlaceModel(GameService _gameService)
         {
-            GameService = _gameService;
+            gameService = _gameService;
         }
 
         public Location Location { get; set; }
         public List<Connection> Directions { get; set; }
         public void OnGet(Room id)
         {
-            GameService.FetchData();
+            gameService.FetchData();
 
-            GameService.State.Location = id;
+            gameService.State.Location = id;
 
-            GameService.Store();
-            Location = GameService.Location;
-            Directions = GameService.Directions;
+            gameService.Store();
+            Location = gameService.Location;
+            Directions = gameService.Directions;
+            foreach (var _item in gameService.State.Inventory)
+            {
+                if (_item.ItemDescription == Location.FoundItem.ItemDescription)
+                {
+                    _item.Counter++;
+                }
+            }
         }
 
         public void OnPost()
         {
-           foreach (var _item in this.GameService.State.Inventory)
-           {
-                if (_item == Location.FoundItem)
-                {
-                    _item.Counter++;
-                }
-           }
+
         }
     }
 }

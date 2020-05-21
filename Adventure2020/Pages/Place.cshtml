@@ -10,29 +10,30 @@
     @foreach (var _direction in Model.Directions)
     {
         <a class="btn btn-secondary" asp-page="Place" asp-route-id="@_direction.To">@_direction.Description</a>
-        <p>HP: @Model.GameService.State.HP</p>
-            //@Model.GameService.State.Name
-        <table>
-            <tr>
-                @foreach (var _item in Model.GameService.State.Inventory)
-                {
-                    <td>@_item.ItemDescription</td>
-                }
-            </tr>
-            <tr>
-                @foreach (var _item in Model.GameService.State.Inventory)
-                {
-                    <td>@_item.Counter</td>
-                } 
-            </tr>
-        </table>
-       
-        <form method="post">
-            @if (Model.Location.FoundItem != null)
-            {
-                <button type="submit">Add @Model.Location.FoundItem.ItemDescription</button>
-            }
-        </form>
+
     }
+    <p>HP: @Model.gameService.State.HP</p>
+    <!--@Model.gameService.State.Name-->
+    <table>
+        <tr>
+            @foreach (var _item in Model.gameService.State.Inventory)
+            {
+                <td>@_item.ItemDescription</td>
+            }
+        </tr>
+        <tr>
+            @foreach (var _item in Model.gameService.State.Inventory)
+            {
+                <td>@_item.Counter</td>
+            }
+        </tr>
+    </table>
+
+    <form method="get" action="/">
+        @if (Model.Location.FoundItem != null)
+        {
+            <button type="submit">Add @Model.Location.FoundItem.ItemDescription</button>
+        }
+    </form>
 </div>
         

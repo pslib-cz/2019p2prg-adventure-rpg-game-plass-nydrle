@@ -20,7 +20,7 @@ namespace Adventure2020.Services
             Locations.Add(Room.Start, new Location { Title = "Start", Description = "This is where our story starts." }); // Game starts
             Locations.Add(Room.End, new Location { Title = "Game Over", Description = "All worldly things will one day perish. You just did." }); // Game Over
             Locations.Add(Room.Hall, new Location { Title = "Hall", Description = "You stand in seemingly empty hall..." });
-            Locations.Add(Room.Library, new Location { Title = "Library", Description = "Library is in utterly desolate state...", FoundItem = new Item("Book", false, 1) });
+            Locations.Add(Room.Library, new Location { Title = "Library", Description = "Library is in utterly desolate state...", FoundItem = new Item("Book", false, 0) });
             Locations.Add(Room.Gallery, new Location { Title = "Gallery", Description = "You are standing on the gallery... But the stairs back to the library had broken already." });
             Locations.Add(Room.Window, new Location { Title = "Window", Description = "You are looking out of the window. The window is locked..." });
             Locations.Add(Room.Bookshelf, new Location { Title = "Bookshelf", Description = "There is just a regular bookshelf. Oh wait, what does this little metal button do?" });
