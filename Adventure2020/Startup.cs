@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Adventure2020.Models;
 using Adventure2020.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,7 +11,6 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using static Adventure2020.Services.SessionStorage;
 
 namespace Adventure2020
 {
@@ -27,15 +27,11 @@ namespace Adventure2020
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDistributedMemoryCache();
-
             services.AddSession();
-
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            
-            services.AddTransient<Services.SessionStorage>();
-
-            services.AddSingleton<LocationProvider>();
-
+            services.AddScoped<ISessionStorage<GameState>,SessionStorage<GameState>>();
+            services.AddScoped<ILocationProvider, LocationProvider>();
+            services.AddScoped<GameService>();
             services.AddRazorPages();
         }
 
@@ -54,13 +50,11 @@ namespace Adventure2020
             }
 
             app.UseHttpsRedirection();
-
             app.UseStaticFiles();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.UseSession();
 
             app.UseEndpoints(endpoints =>

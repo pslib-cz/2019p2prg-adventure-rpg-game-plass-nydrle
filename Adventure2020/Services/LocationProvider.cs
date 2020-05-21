@@ -1,4 +1,6 @@
 ﻿using Adventure2020.Models;
+using Adventure2020.Models.Exceptions;
+using Microsoft.CodeAnalysis.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,68 +10,70 @@ namespace Adventure2020.Services
 {
     public class LocationProvider : ILocationProvider
     {
-        public Dictionary<int, Location> Locations;
-        public List<Connection> Map; // list of connections
+        private Dictionary<Room, ILocation> Locations;
+        private List<Connection> Map;
 
         public LocationProvider()
         {
-            GameState gs = new GameState();
-            Locations = new Dictionary<int, Location>();
+            Locations = new Dictionary<Room, ILocation>();
             Map = new List<Connection>();
-            Locations.Add(0, new Location { Description = "This is where our story starts." }); // Game starts
-            Locations.Add(1, new Location { Description = "All worldly things will one day perish. You just did." }); // Game Over
-            Locations.Add(2, new Location { Description = "You stand in seemingly empty hall ..." });
-            Locations.Add(3, new Location { Description = "Library is in utterly desolate state, you can take some books :) ..." });
-            Locations.Add(4, new Location { Description = "You are standing on the GALLERY..."});
-            Locations.Add(5, new Location { Description = "You are looking out of the window. The window is locked ..."});
-            Locations.Add(6, new Location { Description = "There is just a regular bookshelf. Oh wait, what does this little metal button?"});
-            Locations.Add(7, new Location { Description = "" });
+            Locations.Add(Room.Start, new Location { Title = "Start", Description = "This is where our story starts." }); // Game starts
+            Locations.Add(Room.End, new Location { Title = "Game Over", Description = "All worldly things will one day perish. You just did." }); // Game Over
+            Locations.Add(Room.Hall, new Location { Title = "Hall", Description = "You stand in seemingly empty hall..." });
+            Locations.Add(Room.Library, new Location { Title = "Library", Description = "Library is in utterly desolate state..." });
+            Locations.Add(Room.Gallery, new Location { Title = "Gallery", Description = "You are standing on the gallery... But the stairs back to the library had broken already." });
+            Locations.Add(Room.Window, new Location { Title = "Window", Description = "You are looking out of the window. The window is locked..." });
+            Locations.Add(Room.Bookshelf, new Location { Title = "Bookshelf", Description = "There is just a regular bookshelf. Oh wait, what does this little metal button do?" });
+            Locations.Add(Room.HiddenHall, new Location { Title = "Hidden hall", Description = "You clicked the button and the bookshelf opened itself and now you entered a secret hall." });
+            Locations.Add(Room.Key, new Location { Title = "Key", Description = "You got the key and put it into your inventory.", GottenItem = new Item("An old key...", false, 1) });
 
-            Map.Add(new Connection(0, 2, "Go to hall"));
-            Map.Add(new Connection(2, 3, "Visit Library", (gs) => { if (gs.HP > 10) return true; return false; }));
-            Map.Add(new Connection(3, 4, "Walk up the little stairs in the library to the gallery"));
-            Map.Add(new Connection(4, 5, "Go left to look closely at the window")); // s oknem pak půjde něco udělat
-            Map.Add(new Connection(4, 6, "Go to the right to see the end of the gallery"));
-            //_map.Add(new Connection(6,7, "Push the button and go to the secret room", (gs) =>{if(gs.IsItemInHand("item") == true)}
+            Map.Add(new Connection(Room.Start, Room.Hall, "Go to hall"));
+            Map.Add(new Connection(Room.Hall, Room.Library, "Visit Library", (gs) => { if (gs.HP > 10) return true; return false; }));
+            Map.Add(new Connection(Room.Library, Room.Hall, "Return to hall"));
+            Map.Add(new Connection(Room.Library, Room.Gallery, "Walk up the little stairs in the library to the gallery"));
+            Map.Add(new Connection(Room.Gallery, Room.Window, "Go left to look closely at the window"));
+            Map.Add(new Connection(Room.Gallery, Room.Bookshelf, "Go right near the bookshelf"));
+            Map.Add(new Connection(Room.Window, Room.Gallery, "Turn back"));
+            Map.Add(new Connection(Room.Bookshelf, Room.Gallery, "Turn back"));
+            Map.Add(new Connection(Room.Bookshelf, Room.HiddenHall, "Push the button"));
+            Map.Add(new Connection(Room.HiddenHall, Room.Key, "Get the key from the ground"));
+            Map.Add(new Connection(Room.Key, Room.HiddenHall, "Continue"));
+
         }
 
-        public bool ExistsLocation(int id)
+        public bool ExistsLocation(Room id)
         {
-            throw new NotImplementedException();
+            return Locations.ContainsKey(id);
         }
 
-        public IList<Connection> GetConnectionsFrom(int id)
+        public List<Connection> GetConnectionsFrom(Room id)
         {
-            var _connections = new List<Connection>();
-            foreach(var i in Map)
+            if (ExistsLocation(id))
             {
-                if (id == i.From)
-                {
-                    _connections.Add(i);
-                }
+                return Map.Where(m => m.From == id).ToList();
             }
-            return _connections;
+            throw new InvalidLocation();
         }
 
-        public IList<Connection> GetConnectionsTo(int id)
+        public List<Connection> GetConnectionsTo(Room id)
         {
-            var _connections = new List<Connection>();
-            foreach (var i in Map)
+            if (ExistsLocation(id))
             {
-                if (id == i.To)
-                {
-                    _connections.Add(i);
-                }
+                return Map.Where(m => m.To == id).ToList();
             }
-            return _connections;
+            throw new InvalidLocation();
         }
 
-        public ILocation GetLocation(int id)
+        public Location GetCurrentLocation(Room id)
         {
-            return Locations[id];
+            if (ExistsLocation(id))
+            {
+                return (Location)Locations[id];
+            }
+            throw new InvalidLocation();
         }
 
-        public bool IsNavigationLegit(int from, int to, GameState state)
+        public bool IsNavigationLegitimate(Room from, Room to, GameState state)
         {
             throw new NotImplementedException();
         }

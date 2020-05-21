@@ -1,27 +1,31 @@
-﻿using Microsoft.AspNetCore.Http;
-using Adventure2020.Models;
+﻿using Adventure2020.Helpers;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RPG.Helpers;
 
 namespace Adventure2020.Services
 {
-    public class SessionStorage
+    public class SessionStorage<T>: ISessionStorage<T>
     {
         readonly ISession _session;
-        const string KEY = "RPG";
 
         public SessionStorage(IHttpContextAccessor hca)
         {
             _session = hca.HttpContext.Session;
-
         }
 
-        public void SetLocation(Location _loc)
+        public T LoadOrCreate(string key)
         {
+            T result = _session.Get<T>(key);
+            if (typeof(T).IsClass && result == null) result = (T)Activator.CreateInstance(typeof(T));
+            return result;
+        }
 
+        public void Save(string key, T data)
+        {
+            _session.Set(key, data);
         }
     }
 }
