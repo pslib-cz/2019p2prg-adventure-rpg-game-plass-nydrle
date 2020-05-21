@@ -25,7 +25,7 @@ namespace Adventure2020.Services
             Locations.Add(Room.Window, new Location { Title = "Window", Description = "You are looking out of the window. The window is locked..." });
             Locations.Add(Room.Bookshelf, new Location { Title = "Bookshelf", Description = "There is just a regular bookshelf. Oh wait, what does this little metal button do?" });
             Locations.Add(Room.HiddenHall, new Location { Title = "Hidden hall", Description = "You clicked the button and the bookshelf opened itself and now you entered a secret hall." });
-            Locations.Add(Room.Key, new Location { Title = "Key", Description = "You got the key and put it into your inventory.", GottenItem = new Item("An old key...", false, 1) });
+            Locations.Add(Room.Key, new Location { Title = "Key", Description = "You got the key and put it into your inventory." });
 
             Map.Add(new Connection(Room.Start, Room.Hall, "Go to hall"));
             Map.Add(new Connection(Room.Hall, Room.Library, "Visit Library", (gs) => { if (gs.HP > 10) return true; return false; }));

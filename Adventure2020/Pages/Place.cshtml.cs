@@ -29,10 +29,6 @@ namespace Adventure2020
             GameService.Store();
             Location = GameService.Location;
             Directions = GameService.Directions;
-            if (Location.GottenItem != null)
-            {
-                
-            }
         }
     }
 }

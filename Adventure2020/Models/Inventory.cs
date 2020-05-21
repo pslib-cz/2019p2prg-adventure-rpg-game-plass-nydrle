@@ -7,17 +7,17 @@ namespace Adventure2020.Models
 {
     public class Inventory
     {
-        public int maxCapacity { get; protected set; }
-        public List<Item> items = new List<Item>();
+        public int MaxCapacity { get; protected set; }
+        public List<Item> Items = new List<Item>();
         public Inventory(int maxCapacity)
         {
             maxCapacity = 10;
         }
-        public bool AddToInv(Item it)
+        public bool AddToInventory(Item it)
         {
-            if(items.Count < maxCapacity)
+            if (Items.Count < MaxCapacity && Items.Contains(it))
             {
-                items.Add(it);
+                Items.Add(it);
                 return true;
             }
             return false;

@@ -1,5 +1,6 @@
 ﻿@page
 @model Adventure2020.StartModel
+@using Adventure2020.Models;
 @{
     ViewData["Title"] = "Start";
 }
@@ -10,6 +11,7 @@
     @foreach (var target in Model.Directions)
     {
         <a class="btn btn-secondary" asp-page="Place" asp-route-id="@target.To">@target.Description</a>
+        <p>Tvoje jméno je: @Model.Name</p>
     }
 </div>
 
