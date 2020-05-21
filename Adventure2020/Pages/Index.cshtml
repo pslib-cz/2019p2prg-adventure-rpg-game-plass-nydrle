@@ -1,10 +1,15 @@
 ﻿@page
-@model IndexModel
+@model IndexModel 
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to the RPG Game</h1>
+    @foreach (var _item in Adventure2020.Services.LocationProvider.Locations)
+    {
+        <p>@_item</p>
+    }
+
+
 </div>

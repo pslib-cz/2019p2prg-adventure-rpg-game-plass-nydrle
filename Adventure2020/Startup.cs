@@ -31,10 +31,10 @@ namespace Adventure2020
             services.AddSession();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            services.AddSingleton<LocationProvider>();
             
             services.AddTransient<Services.SessionStorage>();
+
+            services.AddSingleton<LocationProvider>();
 
             services.AddRazorPages();
         }

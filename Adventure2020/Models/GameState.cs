@@ -11,9 +11,13 @@ namespace Adventure2020.Models
         public int HP { get; }
         public int maxCapacity { get; protected set; }
 
-        public List<Item> items = new List<Item>();
+//        public List<Item> items = new List<Item>();
 
-        public Item hand;
-        
+//        public Item hand;
+
+        public GameState()
+        {
+
+        }
     }
 }
