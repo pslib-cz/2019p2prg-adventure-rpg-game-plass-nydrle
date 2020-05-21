@@ -14,7 +14,7 @@ namespace Adventure2020.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        public GameService GameService = new GameService();
+        public GameService GameService;
 
         [BindProperty]
         public string Name { get; set; }

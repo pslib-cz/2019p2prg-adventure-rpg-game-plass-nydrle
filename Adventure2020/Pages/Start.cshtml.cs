@@ -12,7 +12,7 @@ namespace Adventure2020
 {
     public class StartModel : PageModel
     {
-        private GameService GameService;
+        public GameService GameService;
         public Location Location { get; set; }
 
         [BindProperty]
@@ -30,6 +30,10 @@ namespace Adventure2020
             Location = GameService.Location;
             Directions = GameService.Directions;
             Name = GameService.State.Name;
+        }
+        
+        public void OnPost()
+        {
         }
     }
 }

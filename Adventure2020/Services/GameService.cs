@@ -25,7 +25,7 @@ namespace Adventure2020.Services
 
         public void Start()
         {
-            State = new GameState { HP = 10, Location = START_ROOM };
+            State = new GameState { HP = 10, Location = START_ROOM, Inventory = new List<Item> { { new Item("Knife", true, 1) }, { new Item("Key", false, 0) }, { new Item("Book", false, 0) }, { new Item("Flashlight", false, 0) }, { new Item("Heal Potion", false, 0)} } };
             Store();
         }
 

@@ -15,7 +15,7 @@ namespace Adventure2020.Models
         [BindProperty]
         public int MaxInventoryCapacity { get; set; }
 
-        public List<Item> Items = new List<Item>();
+        public List<Item> Inventory { get; set; }
 
         public Item Hand;
         public string Name { get; set; }

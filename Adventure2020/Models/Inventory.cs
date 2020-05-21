@@ -9,9 +9,9 @@ namespace Adventure2020.Models
     {
         public int MaxCapacity { get; protected set; }
         public List<Item> Items = new List<Item>();
-        public Inventory(int maxCapacity)
+        public Inventory()
         {
-            maxCapacity = 10;
+            MaxCapacity = 10;
         }
         public bool AddToInventory(Item it)
         {

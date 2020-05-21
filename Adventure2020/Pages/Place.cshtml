@@ -10,6 +10,22 @@
     @foreach (var _direction in Model.Directions)
     {
         <a class="btn btn-secondary" asp-page="Place" asp-route-id="@_direction.To">@_direction.Description</a>
+        <p>HP: @Model.GameService.State.HP</p>
+            //@Model.GameService.State.Name
+        <table>
+            <tr>
+                @foreach (var _item in Model.GameService.State.Inventory)
+                {
+                    <td>@_item.ItemDescription</td>
+                }
+            </tr>
+            <tr>
+                @foreach (var _item in Model.GameService.State.Inventory)
+                {
+                    <td>@_item.Counter</td>
+                }
+            </tr>
+        </table>
     }
 </div>
         

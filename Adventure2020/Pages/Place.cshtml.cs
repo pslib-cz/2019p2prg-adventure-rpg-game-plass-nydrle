@@ -11,7 +11,7 @@ namespace Adventure2020
 {
     public class PlaceModel : PageModel
     {
-        private GameService GameService;
+        public GameService GameService;
 
         public PlaceModel(GameService _gameService)
         {
