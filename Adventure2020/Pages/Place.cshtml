@@ -14,6 +14,9 @@
     }
     <p>HP: @Model.gameService.State.HP</p>
     <!--@Model.gameService.State.Name-->
+    
+
+<form method="post" action="/">
     <table>
         <tr>
             @foreach (var _item in Model.gameService.State.Inventory)
@@ -28,12 +31,10 @@
             }
         </tr>
     </table>
-
-    <form method="get" action="/">
-        @if (Model.Location.FoundItem != null)
-        {
-            <button type="submit">Add @Model.Location.FoundItem.ItemDescription</button>
-        }
-    </form>
+    @if (Model.Location.FoundItem != null)
+    {
+        <button type="submit">Add @Model.Location.FoundItem.ItemDescription</button>
+    }
+</form>
 </div>
         
