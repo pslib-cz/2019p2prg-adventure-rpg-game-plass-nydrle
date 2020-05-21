@@ -23,9 +23,16 @@
                 @foreach (var _item in Model.GameService.State.Inventory)
                 {
                     <td>@_item.Counter</td>
-                }
+                } 
             </tr>
         </table>
+       
+        <form method="post">
+            @if (Model.Location.FoundItem != null)
+            {
+                <button type="submit">Add @Model.Location.FoundItem.ItemDescription</button>
+            }
+        </form>
     }
 </div>
         

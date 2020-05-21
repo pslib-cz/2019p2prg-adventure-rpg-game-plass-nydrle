@@ -12,7 +12,7 @@ namespace Adventure2020.Services
         private readonly ILocationProvider LocationProvider;
         private const string KEY = "AmazingAdventure";
         private const Room START_ROOM = Room.Start;
-        public GameState State { get; private set; }
+        public GameState State { get; set; }
         public Location Location { get { return LocationProvider.GetCurrentLocation(State.Location); } }
         public List<Connection> Directions { get { return LocationProvider.GetConnectionsFrom(State.Location); } }
 

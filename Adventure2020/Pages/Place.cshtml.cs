@@ -30,5 +30,16 @@ namespace Adventure2020
             Location = GameService.Location;
             Directions = GameService.Directions;
         }
+
+        public void OnPost()
+        {
+           foreach (var _item in this.GameService.State.Inventory)
+           {
+                if (_item == Location.FoundItem)
+                {
+                    _item.Counter++;
+                }
+           }
+        }
     }
 }
