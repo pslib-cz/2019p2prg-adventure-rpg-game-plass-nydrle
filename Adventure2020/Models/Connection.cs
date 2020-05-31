@@ -15,7 +15,7 @@ namespace Adventure2020.Models
         /// <param name="to">Id of location we want to enter.</param>
         /// <param name="description">Room description.</param>
         /// <param name="condition">Additional condition required for succesfull movement.</param>
-        public Connection(Room from, Room to, string description, Func<GameState, bool> condition = null)
+        public Connection(Room from, Room to, string description, Func<GameState, Room> condition = null)
         {
             From = from;
             To = to;
@@ -26,6 +26,6 @@ namespace Adventure2020.Models
         public Room From { get; set; }
         public Room To { get; set; }
         public string Description { get; set; }
-        public Func<GameState, bool> Condition { get; set; }
+        public Func<GameState, Room> Condition { get; set; }
     }
 }

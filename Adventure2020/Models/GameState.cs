@@ -11,13 +11,14 @@ namespace Adventure2020.Models
         [BindProperty]
         public int HP { get; set; }
         [BindProperty]
+        public int Mana { get; set; }
+        [BindProperty]
         public Room Location { get; set; }
         [BindProperty]
         public int MaxInventoryCapacity { get; set; }
-
         public List<Item> Inventory { get; set; }
-
-        public Item Hand;
         public string Name { get; set; }
+        public Room Previous { get; set; }
+        public Connection Connection { get; set; }
     }
 }

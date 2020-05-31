@@ -10,5 +10,6 @@ namespace Adventure2020.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public Item FoundItem { get; set; }
+        public Func<GameState, GameState> Action { get; set; }
     }
 }

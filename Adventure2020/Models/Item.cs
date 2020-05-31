@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,14 +8,16 @@ namespace Adventure2020.Models
 {
     public class Item
     {
+        [BindProperty]
         public string ItemDescription { get; set; }
-        public bool IsInHand { get; set; }
+        [BindProperty]
+        public bool InInvent { get; set; }
+        [BindProperty]
         public int Counter { get; set; }
-        public Item(string _description, bool _inHand, int _count)
+        public Item(string _description, bool InInvent)
         {
             ItemDescription = _description;
-            IsInHand = _inHand;
-            Counter = _count;
+            this.InInvent = InInvent;
         }
     }
 }

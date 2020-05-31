@@ -11,10 +11,8 @@
     @foreach (var target in Model.Directions)
     {
         <a class="btn btn-secondary" asp-page="Place" asp-route-id="@target.To">@target.Description</a>
-        <form method="post">
-        </form>
+        
     }
-    <!--<input type="text" name="name" value="" asp-for="@Model.GameService.State.Name"/>
-    <input type="submit" name="submit" value="Nastavit jméno" />-->
+    
 </div>
 

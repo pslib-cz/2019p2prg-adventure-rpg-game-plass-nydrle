@@ -8,5 +8,6 @@ namespace Adventure2020.Models
     public interface ILocation
     {
         string Description { get; }
+        Item FoundItem { get; set; }
     }
 }

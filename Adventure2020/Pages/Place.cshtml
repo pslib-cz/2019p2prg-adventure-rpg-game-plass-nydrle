@@ -7,40 +7,41 @@
 <h1>@Model.Location.Title</h1>
 <div>@Model.Location.Description</div>
 <div class="m-1">
-    
+
     @foreach (var _direction in Model.Directions)
     {
-
-        <a class="btn btn-secondary" asp-page="Place" asp-route-id="@_direction.To">@_direction.Description</a>
+        if (_direction.Description != "Die")
+        {
+            <a class="btn btn-secondary" asp-page="Place" asp-route-id="@_direction.To">@_direction.Description</a>
+        }
+        else
+        {
+            <p></p>
+        }
 
     }
+
+
     <p>HP: @Model.gameService.State.HP</p>
-    <!--@Model.gameService.State.Name-->
-    
+    <p>@Model.gameService.State.Name</p>
 
-<form method="get">
-    <table>
-        <tr>
-            @foreach (var _item in Model.gameService.State.Inventory)
-            {
-                <td>@_item.ItemDescription</td>
-            }
-        </tr>
-        <tr>
-            @foreach (var _item in Model.gameService.State.Inventory)
-            {
-                <td>@_item.Counter</td>
-            }
-        </tr>
-    </table>
-    @if (Model.Location.FoundItem != null)
-    {
 
-        <button class="btn btn-secondary" asp-page="Place" asp-route-id="">Add @Model.Location.FoundItem.ItemDescription</button>
-    }
-</form>
-<form method="post">
-    
-</form>
+    <form method="get">
+        <table>
+            <tr>
+                @foreach (var _item in Model.gameService.State.Inventory)
+                {
+                    <td>@_item.ItemDescription</td>
+                }
+            </tr>
+            <tr>
+                @foreach (var _item in Model.gameService.State.Inventory)
+                {
+                    <td>@_item.InInvent</td>
+                }
+            </tr>
+        </table>
+
+    </form>
+
 </div>
-        

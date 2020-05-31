@@ -15,6 +15,11 @@ namespace Adventure2020.Models
         Window,
         Bookshelf,
         HiddenHall,
-        Key
+        Key,
+        Book,
+        Flashlight,
+        HalfOfTheHall,
+        EndOfTheHall,
+        Office
     }
 }

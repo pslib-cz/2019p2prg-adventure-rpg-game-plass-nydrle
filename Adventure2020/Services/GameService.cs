@@ -14,18 +14,20 @@ namespace Adventure2020.Services
         private const Room START_ROOM = Room.Start;
         public GameState State { get; set; }
         public Location Location { get { return LocationProvider.GetCurrentLocation(State.Location); } }
+
+        //public Connection Connection { get { return} }
         public List<Connection> Directions { get { return LocationProvider.GetConnectionsFrom(State.Location); } }
 
         public GameService(ISessionStorage<GameState> _sessionStorage, ILocationProvider _locationProvider)
         {
             SessionStorage = _sessionStorage;
             LocationProvider = _locationProvider;
-            State = new GameState();
+            State = new GameState { HP = 10, Mana = 10,Previous = START_ROOM, Location = START_ROOM, Inventory = new List<Item> { { new Item("Knife", true) }, { new Item("Key", false) }, { new Item("Book", false) }, { new Item("Flashlight", false) }, { new Item("Heal Potion", false) } } };
         }
 
         public void Start()
         {
-            State = new GameState { HP = 10, Location = START_ROOM, Inventory = new List<Item> { { new Item("Knife", true, 1) }, { new Item("Key", false, 0) }, { new Item("Book", false, 0) }, { new Item("Flashlight", false, 0) }, { new Item("Heal Potion", false, 0)} } };
+            
             Store();
         }
 
