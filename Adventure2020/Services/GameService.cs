@@ -22,7 +22,7 @@ namespace Adventure2020.Services
         {
             SessionStorage = _sessionStorage;
             LocationProvider = _locationProvider;
-            State = new GameState { HP = 10, Mana = 10,Previous = START_ROOM, Location = START_ROOM, Inventory = new List<Item> { { new Item("Knife", true) }, { new Item("Key", false) }, { new Item("Book", false) }, { new Item("Flashlight", false) }, { new Item("Heal Potion", false) } } };
+            State = new GameState { HP = 10, Energy = 10,Previous = START_ROOM, Location = START_ROOM, Inventory = new List<Item> { { new Item("Knife", true) }, { new Item("Desert Eagle", false) }, { new Item("Book", false) }, { new Item("Flashlight", false) }, { new Item("Heal Potion", false) } } };
         }
 
         public void Start()

@@ -11,7 +11,7 @@ namespace Adventure2020.Models
         [BindProperty]
         public int HP { get; set; }
         [BindProperty]
-        public int Mana { get; set; }
+        public float Energy { get; set; }
         [BindProperty]
         public Room Location { get; set; }
         [BindProperty]
