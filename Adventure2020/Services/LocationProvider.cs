@@ -55,6 +55,8 @@ namespace Adventure2020.Services
             Map.Add(new Connection(Room.Start, Room.Hall, "Go to hall"));
             Map.Add(new Connection(Room.Hall, Room.Library, "Visit Library" ));
             Map.Add(new Connection(Room.Library, Room.Hall, "Return to hall"));
+            Map.Add(new Connection(Room.Library, Room.Book, "Grab the book"));
+            Map.Add(new Connection(Room.Book, Room.Library, "Keep Going!"));
             Map.Add(new Connection(Room.Library, Room.Gallery, "Walk up the little stairs in the library to the gallery"));
             Map.Add(new Connection(Room.Gallery, Room.Window, "Go left to look closely at the window"));
             Map.Add(new Connection(Room.Gallery, Room.Bookshelf, "Go right near the bookshelf"));
@@ -64,8 +66,7 @@ namespace Adventure2020.Services
             Map.Add(new Connection(Room.HiddenHall, Room.HalfOfTheHall, "Go through the dark hall"));
             Map.Add(new Connection(Room.HalfOfTheHall, Room.Flashlight, "Get the flashlight from the ground"));
             Map.Add(new Connection(Room.Flashlight, Room.HalfOfTheHall, "Continue"));
-            Map.Add(new Connection(Room.Library, Room.Book, "Grab the book"));
-            Map.Add(new Connection(Room.Book, Room.Library, "Keep Going!"));
+
             Map.Add(new Connection(Room.HiddenHall, Room.End, "Die"));
             Map.Add(new Connection(Room.HalfOfTheHall, Room.EndOfTheHall, "Go to the end of the hall."));
             Map.Add(new Connection(Room.EndOfTheHall, Room.Office, "Open the door on the end of the secret hall.", (gs) => { if (gs.Inventory.Where(i => i.ItemDescription == "Flashlight" && i.InInvent == true).Count() > 0) return Room.Office; return Room.EndOfTheHall; }));
